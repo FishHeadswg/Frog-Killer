@@ -6,10 +6,10 @@
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
 // @downloadURL  https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
-// @match http*://boards.4channel.org/*
-// @match http*://boards.4chan.org/*
-// @exclude-match http*://boards.4channel.org/*/thread/*
-// @exclude-match http*://boards.4chan.org/*/thread/*
+// @match *://boards.4channel.org/*
+// @match *://boards.4chan.org/*
+// @exclude-match *://boards.4channel.org/*/thread/*
+// @exclude-match *://boards.4chan.org/*/thread/*
 // @grant        none
 // @run          document-idle
 // ==/UserScript==
