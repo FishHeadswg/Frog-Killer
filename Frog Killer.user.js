@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Frog Killer
+// @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
 // @version      0.3
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
