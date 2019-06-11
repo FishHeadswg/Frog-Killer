@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
-// @version      0.3
+// @version      0.4
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
@@ -40,6 +40,7 @@ class Frogs {
         });
     }
     addLink() {
+        if (document.getElementsByClassName("bottomlink").length < 1) return setTimeout(() => this.addLink(), 1000);
         const navlinks = document.getElementsByClassName("bottomlink");
         const frogbtn = document.createElement("span");
         frogbtn.className = "brackets-wrap frogs";
