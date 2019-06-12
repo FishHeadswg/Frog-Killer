@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
-// @version      0.4
+// @version      0.4.5
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
@@ -67,22 +67,22 @@ class Frogs {
                     statusText: xhr.statusText
                 });
             };
-            var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            var proxyUrl = 'https://cors.gnfos.com/';
             xhr.open('GET', proxyUrl + targetUrl);
             xhr.responseType = 'blob';
             xhr.send();
         });
     }
     shootFrogs(data) {
-        let r = false;
+        let r = 0;
         let g = 0;
-        let b = false;
+        let b = 0;
         for (let j = 0; j < data.length; j += 4) {
             if ((data[j] >= 38 && data[j] <= 94) && (data[j + 1] >= 116 && data[j + 1] <= 148) && (data[j + 2] >= 0 && data[j + 2] <= 60)) g++;
-            if ((data[j] >= 132 && data[j] <= 168) && (data[j + 1] >= 60 && data[j + 1] <= 106) && (data[j + 2] >= 0 && data[j + 2] <= 84)) r = true;
-            if (data[j] <= 16 && data[j + 1] <= 16 && data[j + 2] <= 16) b = true;
+            if ((data[j] >= 132 && data[j] <= 168) && (data[j + 1] >= 60 && data[j + 1] <= 106) && (data[j + 2] >= 0 && data[j + 2] <= 84)) r++;
+            if (data[j] <= 16 && data[j + 1] <= 16 && data[j + 2] <= 16) b++;
         }
-        if (r && (g >= 25) && b) return true;
+        if ((r > 12) && (g >= 75) && (b > 4)) return true;
         return false;
     }
     createImg(i, base64) {
