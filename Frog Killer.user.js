@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
-// @version      0.4.5
+// @version      0.4.6
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
@@ -23,17 +23,17 @@ class Frogs {
     }
     init() {
         this.thumbs = [];
-        this.promises = [];
-        this.imgs = document.getElementsByTagName("img");
         this.canvas = document.createElement("canvas");
         this.context = this.canvas.getContext('2d');
-        for (let i = 0; i < this.imgs.length; i++) {
-            if (this.imgs[i].getAttribute('class') === "catalog-thumb") this.thumbs.push(this.imgs[i]);
+        let imgs = document.getElementsByTagName("img");
+        for (let i = 0; i < imgs.length; i++) {
+            if (imgs[i].getAttribute('class') === "catalog-thumb") this.thumbs.push(imgs[i]);
         }
+        let promises = [];
         for (let k = 0; k < this.thumbs.length; k++) {
-            this.promises.push(this.getDataUri(this.thumbs[k].src));
+            promises.push(this.getDataUri(this.thumbs[k].src));
         }
-        Promise.all(this.promises).then(function (base64) {
+        Promise.all(promises).then(function (base64) {
             for (let i = 0; i < base64.length; i++) {
                 frogs.createImg(i, base64[i]);
             }
