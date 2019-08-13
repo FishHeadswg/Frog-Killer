@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
-// @version      0.4.8
+// @version      0.4.9
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
@@ -54,7 +54,7 @@
             navlinks[0].parentNode.insertBefore(frogbtn, navlinks[0].nextSibling);
         }
         getDataUri(targetUrl) {
-            return new Promise(function (resolve, reject) {
+            return new Promise((resolve, reject) => {
                 var xhr = new XMLHttpRequest();
                 xhr.onload = () => {
                     var reader = new FileReader();
@@ -103,14 +103,14 @@
             return false;
         }
         createImg(img, index) {
-            new Promise(function (resolve, reject) {
+            new Promise((resolve, reject) => {
                 var image = new Image();
                 image.onload = () => {
                     frogs.context.drawImage(image, 0, 0);
                     resolve(image);
                 }
                 image.src = img;
-            }).then(function (img) {
+            }).then(img => {
                 let imageData = frogs.context.getImageData(0, 0, img.width, img.height);
                 if (frogs.shootFrogs(imageData.data))
                     frogs.thumbs[index].parentElement.parentElement.parentElement.children[0].click();
