@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Frog_Killer
 // @namespace    https://github.com/FishHeadswg
-// @version      0.4.7
+// @version      0.4.8
 // @description  Shoots frogs on site. Requires 4chanx and catalog view.
 // @author       FishHeadswg
 // @updateURL    https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js
@@ -31,13 +31,11 @@
                     this.thumbs.push(imgs[i]);
             }
             let promises = [];
-            for (let k = 0; k < this.thumbs.length; k++) {
-                promises.push(this.getDataUri(this.thumbs[k].src));
-            }
-            Promise.all(promises).then(function (base64) {
-                for (let i = 0; i < base64.length; i++) {
-                    frogs.createImg(i, base64[i]);
-                }
+            this.thumbs.forEach(thumb => {
+                promises.push(this.getDataUri(thumb.src));
+            })
+            Promise.all(promises).then(base64 => {
+                base64.forEach((img, index) => frogs.createImg(img, index))
             });
         }
         addLink() {
@@ -71,7 +69,7 @@
                         statusText: xhr.statusText
                     });
                 };
-                var proxyUrl = 'https://cors.gnfos.com/';
+                var proxyUrl = 'https://cors-gnfos.herokuapp.com/';
                 xhr.open('GET', proxyUrl + targetUrl);
                 xhr.responseType = 'blob';
                 xhr.send();
@@ -104,18 +102,18 @@
             }
             return false;
         }
-        createImg(i, base64) {
+        createImg(img, index) {
             new Promise(function (resolve, reject) {
                 var image = new Image();
                 image.onload = () => {
                     frogs.context.drawImage(image, 0, 0);
                     resolve(image);
                 }
-                image.src = base64;
+                image.src = img;
             }).then(function (img) {
                 let imageData = frogs.context.getImageData(0, 0, img.width, img.height);
                 if (frogs.shootFrogs(imageData.data))
-                    frogs.thumbs[i].parentElement.parentElement.parentElement.children[0].click();
+                    frogs.thumbs[index].parentElement.parentElement.parentElement.children[0].click();
             });
         }
     }
