@@ -3,6 +3,3 @@ Removes frog threads from the catalog.
 
 Download the Tamper/Grease/Violentmonkey extension **[here](https://github.com/FishHeadswg/Frog-Killer/raw/master/Frog%20Killer.user.js)**.
 
-![screenshot](https://github.com/FishHeadswg/Frog-Killer/raw/master/img/FROG2.png)
-
-![screenshot](https://github.com/FishHeadswg/Frog-Killer/raw/master/img/frogkiller.png)
